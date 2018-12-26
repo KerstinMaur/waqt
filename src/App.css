@@ -1,32 +1,115 @@
-.App {
-  text-align: center;
+/* import fonts */
+@import url('https://fonts.googleapis.com/css?family=Karla|Rubik');
+
+h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.6rem;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+p {
+    font-family: 'Karla', sans-serif;
+    font-size: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* variable colors */
+
+/* input */
+
+.input {
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid rgb(214, 214, 214);
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: 'Karla', sans-serif;
+    font-size: 1.2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.button {
+    display: flex;
+    overflow: hidden;
+    margin: 8px 0;
+    margin-right: 8px;
+    /* padding: 12px 12px; */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 150ms linear;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none !important;
+    text-transform: none;
+    text-transform: capitalize;
+    color: #fff;
+    border: 0 none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 80px;
+    box-shadow: 2px 5px 10px #e4e4e4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+}
+
+.button:active {
+    transition: all 150ms linear;
+    opacity: .75;
+}
+
+.button:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+}
+
+.button.-regular {
+    color: #202129;
+    background-color: #f2f2f2;
+}
+
+.button.-regular:hover {
+    color: #202129;
+    background-color: #e1e2e2;
+    opacity: 1;
+}
+
+.button.-regular:active {
+    background-color: #d5d6d6;
+    opacity: 1;
+}
+
+.button.-blue {
+    color: #FFFFFF;
+    background: #416dea;
+}
+
+.button.-green {
+    color: #FFFFFF;
+    background: rgb(50, 173, 116);
+}
+
+
+/**
+ * 1. Centers the content. Yes, it's a bit opinionated.
+ * 2. See the "width vs max-width" section
+ * 3. See the "Additional Padding" section
+ */
+.wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 960px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
 }
