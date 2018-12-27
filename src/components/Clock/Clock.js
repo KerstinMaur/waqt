@@ -40,7 +40,6 @@ class Clock extends Component {
         if (this.props.checkTime !== "") {
             const hour = parseInt(this.props.checkTime.split(":")[0])
             const minute = parseInt(this.props.checkTime.split(":")[1])
-            console.log(hour, minute)
             date = DateTime.fromObject({
                 hour:  hour,
                 minute: minute,

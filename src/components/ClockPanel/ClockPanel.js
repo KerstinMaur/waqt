@@ -11,7 +11,6 @@ class ClockPanel extends Component {
     
 
     render() {
-        console.log(this.props.clocks)
         return (
             <div className={styles.panel}>
                 <div className={styles.grid}>
