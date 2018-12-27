@@ -36,7 +36,7 @@ class BarControls extends Component {
             const res = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
                 params: {
                     address: event.target.value,
-                    key: 'AIzaSyBfaM8vXQTXUwzCXfM7frCw5ArnyTesGu4'
+                    key: 'AIzaSyD803rKP9ygtRsX-vUO61n42vUD4b8xb0E'
                 }
             })
 
@@ -53,7 +53,7 @@ class BarControls extends Component {
                 params: {
                     location: await "" + geocode.lat + "," + geocode.lng,
                     timestamp: timestamp,
-                    key: 'AIzaSyBfaM8vXQTXUwzCXfM7frCw5ArnyTesGu4'
+                    key: 'AIzaSyD803rKP9ygtRsX-vUO61n42vUD4b8xb0E'
                 }
             })
 

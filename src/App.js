@@ -59,6 +59,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// AIzaSyBfaM8vXQTXUwzCXfM7frCw5ArnyTesGu4
