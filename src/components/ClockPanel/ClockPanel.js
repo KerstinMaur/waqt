@@ -1,21 +1,30 @@
 import styles from './ClockPanel.module.css'
 import React, { Component } from 'react';
+
+import { DateTime } from 'luxon';
+
 import classNames from 'classnames';
 import Clock from '../Clock/Clock'
 
+
 class ClockPanel extends Component {
+    
+
     render() {
+        console.log(this.props.clocks)
         return (
             <div className={styles.panel}>
                 <div className={styles.grid}>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
-                    <Clock/>
+                    {
+                        this.props.clocks.map((clock, index) => 
+                            <Clock key={index} 
+                                timezone={clock.timezone} 
+                                primaryZone={this.props.primaryZone}
+                                checkTime={this.props.checkTime}
+                                name={clock.name}
+                            /> 
+                        )
+                    }
                 </div>
             </div>
         )

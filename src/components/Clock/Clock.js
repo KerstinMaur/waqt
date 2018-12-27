@@ -8,15 +8,17 @@ class Clock extends Component {
         super(props)   
 
         this.state = {
-            date: DateTime.local(),
+            date: DateTime.local().setZone(props.timezone)
         }
     }
 
     componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        );
+        if (this.props.checkTime === "") {
+            this.timerID = setInterval(
+                () => this.tick(),
+                1000
+            );
+        }
     }
 
     componentWillUnmount() {
@@ -24,7 +26,7 @@ class Clock extends Component {
     }
 
     tick() {
-        let date = DateTime.local()
+        let date = DateTime.local().setZone(this.props.timezone)
         this.setState({
             date: date,
         });
@@ -32,9 +34,27 @@ class Clock extends Component {
 
     render() {
 
-        const secondsAngle = this.state.date.second * 6 
-        const minutesAngle = this.state.date.minute * 6
-        const hoursAngle = (this.state.date.hour * 30) + (this.state.date.minute / 2)
+        let date = NaN
+
+        //  render with specified time in preferred timezone, converted to specified timezone
+        if (this.props.checkTime !== "") {
+            const hour = parseInt(this.props.checkTime.split(":")[0])
+            const minute = parseInt(this.props.checkTime.split(":")[1])
+            console.log(hour, minute)
+            date = DateTime.fromObject({
+                hour:  hour,
+                minute: minute,
+                zone: this.props.primaryZone
+            }).setZone(this.props.timezone)
+
+        // render with local() time converted to specified timezone
+        } else {
+            date = this.state.date
+        }
+      
+        const secondsAngle = date.second * 6 
+        const minutesAngle = date.minute * 6
+        const hoursAngle = (date.hour * 30) + (date.minute / 2)
 
         const hoursTransform = {
             WebkitTransform : 'rotateZ('+ hoursAngle + 'deg)',
@@ -54,7 +74,7 @@ class Clock extends Component {
         return (
             <div className={styles.clockContainer}>
                 <p className={styles.location}>
-                    San Francisco
+                    { this.props.name }
                 </p>
                 <article className={classNames(styles.clock)}>
                     <div className={styles.hoursContainer}>

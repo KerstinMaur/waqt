@@ -12,18 +12,50 @@ import Footer from './components/Footer/Footer'
 library.add(faClock, faGlobeAsia)
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="wrapper">
-            <Header/>
-            <BarControls/>
-            <ClockPanel/>
-        </div>
-            <Footer/>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            checkTime : "",
+            primaryZone : "Asia/Karachi",
+            clocks : []
+        }
+
+        this.handleAddClock = this.handleAddClock.bind(this);
+        this.handleCheckTime = this.handleCheckTime.bind(this);
+    }
+
+    handleAddClock = (clock) => {
+        this.setState({
+            clocks : [clock, ...this.state.clocks]
+        })
+    }
+
+    handleCheckTime = (event) => {
+        this.setState({
+            checkTime : event.target.value
+        })
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="wrapper">
+                    <Header />
+                    <BarControls 
+                        handleAddClock={this.handleAddClock}
+                        handleCheckTime={this.handleCheckTime}
+                        />
+                    <ClockPanel 
+                        clocks={this.state.clocks} 
+                        primaryZone={this.state.primaryZone}
+                        checkTime={this.state.checkTime}
+                    />
+                </div>
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;
