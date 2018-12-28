@@ -84,6 +84,11 @@ class Clock extends Component {
                         { date.toLocaleString({ hour: "numeric", minute: "2-digit"}) }
                     </span>
                 </div>
+                <div className={styles.topNext}>
+                    <span className={styles.topNextText}>
+                        { date.toLocaleString({ weekday: "short", month: "short", day: "2-digit" }) }
+                    </span>
+                </div>
                 <article className={classNames(styles.clock)}>
                     <div className={styles.hoursContainer}>
                         <div className={styles.hours} style={hoursTransform}></div>

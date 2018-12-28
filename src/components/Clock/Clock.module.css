@@ -38,19 +38,6 @@
     z-index: 10;
 }
 
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
 .minutesContainer,
 .hoursContainer,
 .secondsContainer {
@@ -111,10 +98,42 @@
     transition: transform 0.2s cubic-bezier(.4, 2.08, .55, .44);
 } */
 
+/* location and digital time */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .topText {
     display: inline;
     font-size: 1.4rem;
     font-family: 'Karla', sans-serif;
+}
+
+/* weather and date */
+
+.topNext {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -15px;
+}
+
+.topNextText {
+    margin-left: auto;
+    display: inline;
+    font-size: 0.8rem;
+    font-family: 'Karla', sans-serif;
+}
+
+/* bottom controls */
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .delete:hover {
