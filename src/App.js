@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faClock, faGlobeAsia, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faGlobeAsia, faTrashAlt, faCircleNotch, faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Header from './components/Header/Header'
 import ClockPanel from './components/ClockPanel/ClockPanel'
 import BarControls from './components/BarControls/BarControls'
 import Footer from './components/Footer/Footer'
 
-library.add(faClock, faGlobeAsia, faTrashAlt)
+library.add(faClock, faGlobeAsia, faTrashAlt, faCircleNotch, faCheckCircle, faExclamationCircle)
 
 class App extends Component {
 

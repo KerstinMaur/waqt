@@ -14,6 +14,7 @@ class BarControls extends Component {
 
         this.state = {
             mode : "location",
+            status  : "none"
         }
     }
 
@@ -35,6 +36,10 @@ class BarControls extends Component {
 
     handleLocationQuery = async (event) => {
         if (event.key === 'Enter') {
+
+            this.setState({
+                status: "loading"
+            })
 
             let res = undefined
             try {
@@ -100,12 +105,49 @@ class BarControls extends Component {
                 isPrimary: false,
             }
 
+            this.setState({
+                status: "success"
+            }, () => { setTimeout(() => {
+                this.setState({
+                    status : "none"
+                })
+            }, 5000)})
+
             // add the clock to the top state
             this.props.handleAddClock(clock)
         }
     }
 
     render() {
+
+        let statusIcon = undefined
+        switch (this.state.status) {
+            case "none":
+                statusIcon = undefined
+                break;
+            case "loading":
+                statusIcon = <FontAwesomeIcon 
+                                href="#" 
+                                icon={["fas", "circle-notch"]} 
+                                spin/>
+                break;
+            case "success":
+                statusIcon = <FontAwesomeIcon 
+                                href="#" 
+                                icon={["fas", "check-circle"]}
+                                style={{ color : "rgb(50, 173, 116)"}}/>
+                break;
+            case "failure":
+                statusIcon = <FontAwesomeIcon 
+                                href="#" 
+                                icon={["fas", "exclamation-circle"]}
+                                style={{ color : "#e74c3c"}}/>
+                break;
+            default:
+                statusIcon = undefined
+                break;
+        }
+
         return (
             <div>
                 <div className={styles.flex}>
@@ -123,8 +165,16 @@ class BarControls extends Component {
                     {/* field input */}
                     {
                         this.state.mode === "location" ? 
-                        <input className="input" type="text" 
-                        placeholder= "Add location..." onKeyDown={this.handleLocationQuery}></input>
+                        <div className={styles.locationInput}>
+                            <input 
+                                className={classNames("input", styles.locationInputField)}
+                                type="text" 
+                                placeholder= "Add location..." 
+                                onKeyDown={this.handleLocationQuery}></input>
+                            <div className={styles.staticIcon}>
+                                { statusIcon }
+                            </div>
+                        </div>
                         :
                         <div className={styles.timeInput}>
                             <input 
