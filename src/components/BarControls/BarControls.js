@@ -32,14 +32,26 @@ class BarControls extends Component {
     handleLocationQuery = async (event) => {
         if (event.key === 'Enter') {
 
-            // make request to geocode api
-            const res = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-                params: {
-                    address: event.target.value,
-                    key: 'AIzaSyD803rKP9ygtRsX-vUO61n42vUD4b8xb0E'
-                }
-            })
+            let res = undefined
+            try {
+                // make request to geocode api
+                res = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                    params: {
+                        address: event.target.value,
+                        key: 'AIzaSyD803rKP9ygtRsX-vUO61n42vUD4b8xb0E'
+                    }
+                })
+            } catch (e) {
+                console.log(e)
+            }
 
+            // check
+            if (res === undefined) {
+                return console.log("No response from Geocode API")
+            } else {
+                console.log(res)
+            }
+            
             // get data from geocode api
             const geocode = {
                 lat: await res.data.results[0].geometry.location.lat,
@@ -48,22 +60,43 @@ class BarControls extends Component {
             }
 
             // make request to timezone api
-            const timestamp = DateTime.local().toSeconds()
-            const res_timezone = await axios.get('https://maps.googleapis.com/maps/api/timezone/json', {
-                params: {
-                    location: await "" + geocode.lat + "," + geocode.lng,
-                    timestamp: timestamp,
-                    key: 'AIzaSyD803rKP9ygtRsX-vUO61n42vUD4b8xb0E'
-                }
-            })
+            // http: //api.timezonedb.com/v2.1/get-time-zone?key=MWZNB46ZMW9N&by=position&format=json&lat=24.8607&lng=67.0011
 
+
+            const timestamp = Math.trunc(DateTime.utc().toSeconds())
+            let res_timezone = undefined
+            const url = "https://cors-anywhere.herokuapp.com/http://api.timezonedb.com/v2.1/get-time-zone"
+            try {
+                res_timezone = await axios.get(url, {
+                    params: {
+                        by: "position",
+                        lat: geocode.lat,
+                        lng: geocode.lng,
+                        time: timestamp,
+                        key: 'MWZNB46ZMW9N',
+                        format: "json"
+                    }
+                })
+            } catch (e) {
+                console.log(e)
+            }
+
+            // check
+            if (res_timezone === undefined) {
+                return console.log("No response from TimezoneDb API")
+            } else {
+                console.log(res_timezone)
+            }
+           
+            // create a clock from the two API calls
             const clock = {
                 lat : await geocode.lat,
                 lng : await geocode.lng,
                 name : await geocode.name,
-                timezone: await res_timezone.data.timeZoneId,
+                timezone: await res_timezone.data.zoneName,
             }
 
+            // add the clock to the top state
             this.props.handleAddClock(await clock)
         }
     }
