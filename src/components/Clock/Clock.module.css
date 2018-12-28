@@ -36,6 +36,12 @@
     z-index: 10;
 }
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .minutesContainer,
 .hoursContainer,
 .secondsContainer {
@@ -96,7 +102,7 @@
     transition: transform 0.2s cubic-bezier(.4, 2.08, .55, .44);
 } */
 
-.location {
+.topText {
     display: inline;
     font-size: 1.4rem;
 }

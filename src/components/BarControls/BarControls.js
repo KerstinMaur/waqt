@@ -54,14 +54,13 @@ class BarControls extends Component {
             
             // get data from geocode api
             const geocode = {
-                lat: await res.data.results[0].geometry.location.lat,
-                lng: await res.data.results[0].geometry.location.lng,
-                name: await res.data.results[0].address_components[0].long_name
+                lat: res.data.results[0].geometry.location.lat,
+                lng: res.data.results[0].geometry.location.lng,
+                name: res.data.results[0].address_components[0].long_name
             }
 
             // make request to timezone api
             // http: //api.timezonedb.com/v2.1/get-time-zone?key=MWZNB46ZMW9N&by=position&format=json&lat=24.8607&lng=67.0011
-
 
             const timestamp = Math.trunc(DateTime.utc().toSeconds())
             let res_timezone = undefined
@@ -90,14 +89,14 @@ class BarControls extends Component {
            
             // create a clock from the two API calls
             const clock = {
-                lat : await geocode.lat,
-                lng : await geocode.lng,
-                name : await geocode.name,
-                timezone: await res_timezone.data.zoneName,
+                lat : geocode.lat,
+                lng : geocode.lng,
+                name : geocode.name,
+                timezone: res_timezone.data.zoneName,
             }
 
             // add the clock to the top state
-            this.props.handleAddClock(await clock)
+            this.props.handleAddClock(clock)
         }
     }
 

@@ -72,9 +72,14 @@ class Clock extends Component {
 
         return (
             <div className={styles.clockContainer}>
-                <p className={styles.location}>
-                    { this.props.name }
-                </p>
+                <div className={styles.top}>
+                    <span className={styles.topText}>
+                        { this.props.name }
+                    </span>
+                    <span className={styles.topText}>
+                        { date.toLocaleString({ hour: "numeric", minute: "2-digit"}) }
+                    </span>
+                </div>
                 <article className={classNames(styles.clock)}>
                     <div className={styles.hoursContainer}>
                         <div className={styles.hours} style={hoursTransform}></div>
