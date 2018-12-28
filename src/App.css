@@ -1,6 +1,12 @@
 /* import fonts */
 @import url('https://fonts.googleapis.com/css?family=Karla|Rubik');
 
+body {
+    /* font smoothing */
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
 h1 {
     font-family: 'Rubik', sans-serif;
     font-size: 1.6rem;
