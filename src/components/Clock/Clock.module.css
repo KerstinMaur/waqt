@@ -1,8 +1,10 @@
 .clockContainer {
     background: rgba(200, 200, 200, .9);
     border-radius: .5em;
+
     padding: 20px;
-    padding-bottom: 65px;
+    padding-bottom: 80px;
+
 
     width: 16em;
     height: 16em;
@@ -41,6 +43,13 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .minutesContainer,
 .hoursContainer,
@@ -105,4 +114,16 @@
 .topText {
     display: inline;
     font-size: 1.4rem;
+    font-family: 'Karla', sans-serif;
 }
+
+.delete:hover {
+    cursor: pointer;
+    color: #e74c3c;
+}
+
+.designatePrimary:hover {
+    cursor: pointer;
+    color: #4778ff;
+}
+

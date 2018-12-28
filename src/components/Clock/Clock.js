@@ -2,6 +2,8 @@ import styles from './Clock.module.css'
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { DateTime } from 'luxon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class Clock extends Component {
     constructor(props) {
@@ -33,7 +35,6 @@ class Clock extends Component {
     }
 
     render() {
-
         let date = NaN
 
         //  render with specified time in preferred timezone, converted to specified timezone
@@ -70,7 +71,10 @@ class Clock extends Component {
             transform: 'rotateZ(' + secondsAngle + 'deg)',
         }
 
+        const designatePrimaryStyle = this.props.isPrimary ? { color : "#4778ff" } : { color : "inherit" }
+
         return (
+
             <div className={styles.clockContainer}>
                 <div className={styles.top}>
                     <span className={styles.topText}>
@@ -91,6 +95,21 @@ class Clock extends Component {
                         <div className={styles.seconds} style={secondsTransform}></div>
                     </div>
                 </article>
+                 <div className={styles.bottom}>
+                    <div 
+                        className={styles.delete}
+                        id={this.props.unique}
+                        onClick={this.props.handleDeleteClock}>
+                        <FontAwesomeIcon href="#" icon={["fas", "trash-alt"]}/>
+                    </div>
+                    <div
+                        className={styles.designatePrimary} 
+                        onClick={this.props.handlePrimaryZoneChange} 
+                        id={this.props.unique}
+                        style={ this.props.isPrimary ? { color: "#4778ff"} : { color : ""}}>
+                        <FontAwesomeIcon href="#" icon={["fas", "clock"]} />
+                    </div>
+                </div>
             </div>
         )
     }

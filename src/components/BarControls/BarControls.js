@@ -13,7 +13,7 @@ class BarControls extends Component {
         super(props)
 
         this.state = {
-            mode : "location"
+            mode : "location",
         }
     }
 
@@ -23,6 +23,10 @@ class BarControls extends Component {
                 mode : "time"
             })
         } else {
+            // hack to clear on switch
+            this.props.handleCheckTime({target : { value : ""}})
+
+            // set to location mode
             this.setState({
                 mode: "location"
             })
@@ -93,6 +97,7 @@ class BarControls extends Component {
                 lng : geocode.lng,
                 name : geocode.name,
                 timezone: res_timezone.data.zoneName,
+                isPrimary: false,
             }
 
             // add the clock to the top state
@@ -121,9 +126,14 @@ class BarControls extends Component {
                         <input className="input" type="text" 
                         placeholder= "Add location..." onKeyDown={this.handleLocationQuery}></input>
                         :
-                        <input className="input" type="time" 
-                        placeholder = "Check a time..." 
-                        onChange={this.props.handleCheckTime}></input>
+                        <div className={styles.timeInput}>
+                            <input 
+                            className={classNames("input", styles.timeInputField)}
+                            type="time"
+                            onChange={this.props.handleCheckTime}></input>
+                            <label className={styles.staticLabel}>Check a time:</label>
+                        </div>
+                       
                     }
                 </div>
             </div>

@@ -9,18 +9,22 @@ import Clock from '../Clock/Clock'
 
 class ClockPanel extends Component {
     
-
     render() {
         return (
             <div className={styles.panel}>
                 <div className={styles.grid}>
                     {
                         this.props.clocks.map((clock, index) => 
-                            <Clock key={index} 
+                            <Clock 
+                                key={index} 
+                                unique={index}
                                 timezone={clock.timezone} 
                                 primaryZone={this.props.primaryZone}
                                 checkTime={this.props.checkTime}
                                 name={clock.name}
+                                isPrimary={clock.isPrimary}
+                                handlePrimaryZoneChange={this.props.handlePrimaryZoneChange}
+                                handleDeleteClock={this.props.handleDeleteClock}
                             /> 
                         )
                     }
