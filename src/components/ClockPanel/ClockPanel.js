@@ -12,8 +12,8 @@ class ClockPanel extends Component {
     render() {
 
         const ClockPosed = posed.div({
-            enter: { x: 50, opacity: 1 },
-            exit: { x: 0, opacity: 0 }
+            enter: { x: 0, opacity: 1 },
+            exit: { x: -50, opacity: 0 }
         })
 
         return (
