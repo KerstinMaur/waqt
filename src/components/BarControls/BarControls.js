@@ -55,10 +55,13 @@ class BarControls extends Component {
             }
 
             // check
-            if (res === undefined) {
-                return console.log("No response from Geocode API")
-            } else {
-                console.log(res)
+            if (res.data.status !== "OK") {
+                return (
+                    console.log("No response from Geocode API"), 
+                    this.setState({
+                        status: "failure"
+                    })
+                )
             }
             
             // get data from geocode api
@@ -90,10 +93,13 @@ class BarControls extends Component {
             }
 
             // check
-            if (res_timezone === undefined) {
-                return console.log("No response from TimezoneDb API")
-            } else {
-                console.log(res_timezone)
+            if (res_timezone.data.zoneName === undefined) {
+                return (
+                    console.log("No response from Time Zone API"),
+                    this.setState({
+                        status: "failure"
+                    })
+                )
             }
            
             // create a clock from the two API calls
