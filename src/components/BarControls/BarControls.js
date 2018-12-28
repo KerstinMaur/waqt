@@ -133,7 +133,6 @@ class BarControls extends Component {
                             onChange={this.props.handleCheckTime}></input>
                             <label className={styles.staticLabel}>Check a time:</label>
                         </div>
-                       
                     }
                 </div>
             </div>

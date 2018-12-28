@@ -10,7 +10,17 @@
 
     font-family: 'Karla', sans-serif;
     font-size: 1.2rem;
-    color: rgb(129, 129, 129);
+    color: #818181;
+}
+
+@media screen and (max-width: 768px) {
+    .staticLabel {
+        display: none;
+    }
+
+    .timeInputField {
+        padding-left: 10px!important;
+    }
 }
 
 .timeInput {
