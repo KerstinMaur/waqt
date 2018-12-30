@@ -48,11 +48,8 @@ class ClockPanel extends Component {
                                     key={index} 
                                     unique={index}
                                     timezone={clock.timezone} 
-                                    primaryZone={this.props.primaryZone}
                                     name={clock.name}
                                     isPrimary={clock.isPrimary}
-                                    handlePrimaryZoneChange={this.props.handlePrimaryZoneChange}
-                                    handleDeleteClock={this.props.handleDeleteClock}
                                 /> 
                             </ClockPosed>
                         )
@@ -67,6 +64,7 @@ class ClockPanel extends Component {
 const mapStateToProps = (state) => {
     return {
         universalDate : state.universalDate,
+        clocks : state.clocks,
     }
 }
 

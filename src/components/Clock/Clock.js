@@ -2,12 +2,14 @@
 import React, { Component } from 'react';
 // redux
 import { connect } from 'react-redux'
+import * as actionTypes from '../../store/actions';
 // styles
 import classNames from 'classnames';
 import styles from './Clock.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // time
 import { DateTime } from 'luxon';
+import { action } from 'popmotion';
 
 class Clock extends Component {
 
@@ -100,7 +102,26 @@ const mapStateToProps = (state) => {
     return {
         universalDate : state.universalDate,
         checkTime : state.checkTime,
+        primaryZone : state.primaryZone,
     }
 }
 
-export default connect(mapStateToProps)(Clock);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handlePrimaryZoneChange : (event) => dispatch({
+            type: actionTypes.PRIMARY_ZONE, 
+            payload: { 
+                clockId : parseInt(event.currentTarget.id),
+            }
+        }),
+
+        handleDeleteClock : (event) => dispatch({
+            type: actionTypes.DELETE_CLOCK,
+            payload : {
+                clockId: parseInt(event.currentTarget.id)
+            }
+        })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Clock);

@@ -199,10 +199,26 @@ class BarControls extends Component {
 
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        handleCheckTime : (event) => dispatch({ type: actionTypes.CHECK_TIME, payload : { checkTime : event.target.value }})
+        primaryZone : state.primaryZone
     }
 }
 
-export default connect(null, mapDispatchToProps)(BarControls);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleCheckTime : (event) => dispatch({ 
+            type: actionTypes.CHECK_TIME, payload : { 
+                checkTime : event.target.value 
+            }
+        }),
+
+        handleAddClock : (clock) => dispatch({
+            type: actionTypes.ADD_CLOCK, payload : {
+                clock : clock
+            }
+        }) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BarControls);
