@@ -1,42 +1,18 @@
-import styles from './Clock.module.css'
+// react
 import React, { Component } from 'react';
+// redux
+import { connect } from 'react-redux'
+// styles
 import classNames from 'classnames';
-import { DateTime } from 'luxon';
+import styles from './Clock.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+// time
+import { DateTime } from 'luxon';
 
 class Clock extends Component {
-    constructor(props) {
-        super(props)   
-
-        this.state = {
-            date: DateTime.local().setZone(props.timezone)
-        }
-    }
-
-    componentDidMount() {
-        if (this.props.checkTime === "") {
-            this.timerID = setInterval(
-                () => this.tick(),
-                1000
-            );
-        }
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    tick() {
-        let date = DateTime.local().setZone(this.props.timezone)
-        this.setState({
-            date: date,
-        });
-    }
 
     render() {
         let date = NaN
-
         //  render with specified time in preferred timezone, converted to specified timezone
         if (this.props.checkTime !== "") {
             const hour = parseInt(this.props.checkTime.split(":")[0])
@@ -49,7 +25,7 @@ class Clock extends Component {
 
         // render with local() time converted to specified timezone
         } else {
-            date = this.state.date
+            date = this.props.universalDate.setZone(this.props.timezone)
         }
       
         const secondsAngle = date.second * 6 
@@ -120,4 +96,10 @@ class Clock extends Component {
     }
 }
 
-export default Clock;
+const mapStateToProps = (state) => {
+    return {
+        universalDate : state.universalDate
+    }
+}
+
+export default connect(mapStateToProps)(Clock);
