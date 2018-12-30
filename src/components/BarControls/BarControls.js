@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import styles from './BarControls.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { connect } from 'react-redux'
+import * as actionTypes from '../../store/actions';
 
 class BarControls extends Component {
 
@@ -197,4 +199,10 @@ class BarControls extends Component {
 
 }
 
-export default BarControls;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleCheckTime : (event) => dispatch({ type: actionTypes.CHECK_TIME, payload : { checkTime : event.target.value }})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(BarControls);

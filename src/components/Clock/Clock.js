@@ -98,7 +98,8 @@ class Clock extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        universalDate : state.universalDate
+        universalDate : state.universalDate,
+        checkTime : state.checkTime,
     }
 }
 

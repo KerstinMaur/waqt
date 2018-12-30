@@ -21,7 +21,6 @@ class App extends Component {
         }
 
         this.handleAddClock = this.handleAddClock.bind(this);
-        this.handleCheckTime = this.handleCheckTime.bind(this);
     }
 
     handlePrimaryZoneChange = (event) => {
@@ -83,12 +82,6 @@ class App extends Component {
         })
     }
 
-    handleCheckTime = (event) => {
-        this.setState({
-            checkTime : event.target.value
-        })
-    }
-
     render() {
         return (
             <div className="App">
@@ -96,12 +89,10 @@ class App extends Component {
                     <Header />
                     <BarControls 
                         handleAddClock={this.handleAddClock}
-                        handleCheckTime={this.handleCheckTime}
                         />
                     <ClockPanel 
                         clocks={this.state.clocks} 
                         primaryZone={this.state.primaryZone}
-                        checkTime={this.state.checkTime}
                         handlePrimaryZoneChange={this.handlePrimaryZoneChange}
                         handleDeleteClock={this.handleDeleteClock}
                     />

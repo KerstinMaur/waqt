@@ -1,1 +1,2 @@
 export const UNIVERSAL_UPDATE = 'UNIVERSAL_UPDATE';
+export const CHECK_TIME = 'CHECK_TIME';

@@ -9,11 +9,17 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action)
+    console.log(state)
     switch(action.type) {
         case actionTypes.UNIVERSAL_UPDATE:
             return {
+                ...state,
                 universalDate : action.payload.newDate
+            }
+        case actionTypes.CHECK_TIME:
+            return {
+                ...state,
+                checkTime : action.payload.checkTime
             }
         default:
             return state;
